@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="text-info"><i class="fas fa-tachometer-alt"></i> DASHBOARD</h4>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-center">List Sites</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" [(ngModel)]="textoBuscar" placeholder="Filter site...">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                        <div class="col-lg-3 animated bounceIn" *ngFor="let data of sites | filtro: textoBuscar:'site'; index as i">
+                            <div *ngIf="sites.length > 0">
+                            <div class="card mb-3">
+                                <div class="card-header bg-info">
+                                    <h4 class="text-center text-white">{{ data.site }} </h4>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5><b> Simulation: </b>  {{ data.simulation.length }}</h5>
+                                </div>
+
+                                <div class="card-footer">
+                                    <a class="btn btn-outline-info float-right" [routerLink]="['/dashboard/simulation', i]">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    
+
+                    <div class="col-lg-12" *ngIf="sites.length == 0">
+                        <div class="alert alert-secondary">
+                            <i class="fas fa-info-circle"></i> No se encontraron resultados
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
